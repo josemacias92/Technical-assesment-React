@@ -21,26 +21,26 @@ module.exports = {
       react: path.join(__dirname, 'node_modules', 'react'),
     },
   },
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       vendors: {
-  //         test: /node_modules\/(?!antd\/).*/,
-  //         name: "vendors",
-  //         chunks: "all",
-  //       },
-  //       // This can be your own design library.
-  //       antd: {
-  //         test: /node_modules\/(antd\/).*/,
-  //         name: "antd",
-  //         chunks: "all",
-  //       },
-  //     },
-  //   },
-  //   runtimeChunk: {
-  //     name: "manifest",
-  //   },
-  // },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /node_modules\/(?!antd\/).*/,
+          name: "vendors",
+          chunks: "all",
+        },
+        // This can be your own design library.
+        antd: {
+          test: /node_modules\/(antd\/).*/,
+          name: "antd",
+          chunks: "all",
+        },
+      },
+    },
+    runtimeChunk: {
+      name: "manifest",
+    },
+  },
   module: {
     rules: [
       {
@@ -81,11 +81,11 @@ module.exports = {
       test: /\.js(\?.*)?$/i,
     }),
   ],
-  // performance: {
-  //   hints: "warning",
-  //   // Calculates sizes of gziped bundles.
-  //   assetFilter: function (assetFilename) {
-  //     return assetFilename.endsWith(".js.gz");
-  //   },
-  // }
+  performance: {
+    hints: "warning",
+    // Calculates sizes of gziped bundles.
+    assetFilter: function (assetFilename) {
+      return assetFilename.endsWith(".js.gz");
+    },
+  }
 };
