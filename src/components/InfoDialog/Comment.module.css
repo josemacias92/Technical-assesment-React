@@ -1,0 +1,38 @@
+.comentario {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  border-bottom: 2px solid #FF5C4D;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.autor {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nombre {
+  margin: 0 0 0.5rem 0;
+  color: #363636;
+}
+
+.relacion {
+  color: #DAD870;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #FFCD58;
+}
+
+.fecha {
+  font-style: italic;
+  color: #FF5C4D;
+}
+
+.body {
+  padding: 3rem;
+  margin-top: 2rem;
+}

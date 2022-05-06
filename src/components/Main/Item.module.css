@@ -1,0 +1,36 @@
+.item td{
+  cursor: pointer;
+  margin: 1rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.item > * {
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.item:hover {
+  background-color: #dad8704c;
+}
+
+.tipo {
+  width: 2rem;
+}
+
+.titulo {
+  width: 38rem;
+}
+
+.autor {
+  width: 10rem;
+}
+
+.creado {
+  width: 10rem;
+}
+
+.etiquetas {
+  width: 10rem;
+  color: #FFCD58;
+}

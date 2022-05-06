@@ -1,0 +1,57 @@
+.encabezado {
+  display: flex;
+  gap: 0.5rem;
+  color: #363636;
+  align-items: center;
+  text-align: center;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 20rem;
+  overflow: auto;
+}
+
+.acciones{
+  display: flex;
+  justify-content: end;
+}
+
+.button {
+  font: inherit;
+  background-color: #ebb002;
+  border: 1px solid #ebb002;
+  color: #201d0f;
+  padding: 0.5rem 1.5rem;
+  margin: 0.4rem;
+  margin-top: 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+  background-color: #ebc002;
+  border-color: #ebc002;
+}
+
+.loading {
+  text-align: center;
+  color: #ffcd58;
+  padding: 5rem;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  padding: 5rem;
+}
+
+.ninguno {
+  color: #ff5c4d;
+  font-style: italic;
+  text-align: center;
+  padding: 5rem;
+}
