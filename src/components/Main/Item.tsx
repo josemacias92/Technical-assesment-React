@@ -1,6 +1,6 @@
 import React from "react";
 import IssueData from "../../models/IssueData";
-import classes from "./Item.module.css";
+import estilos from "./Item.module.css";
 
 const Item: React.FC<{ datos: IssueData; onClick: (id: number) => void }> = ({
   datos: { id, tipo, titulo, autor, fecha, comentarios, etiquetas },
@@ -12,23 +12,23 @@ const Item: React.FC<{ datos: IssueData; onClick: (id: number) => void }> = ({
   };
 
   return (
-    <tr className={classes.item} onClick={openIssue}>
-      <td className={classes.tipo}>
+    <tr className={estilos.item} onClick={openIssue}>
+      <td className={estilos.tipo}>
         <span className="material-symbols-outlined">
           {tipo === "issue" ? "adjust" : "merge"}
         </span>
       </td>
-      <td className={classes.titulo}>{titulo}</td>
-      <td className={classes.autor}>{autor}</td>
-      <td className={classes.fecha}>{fecha.toDateString()}</td>
-      <td className={classes.comentarios}>{comentarios}</td>
-      <td className={classes.etiquetas}>
+      <td className={estilos.titulo}>{titulo}</td>
+      <td className={estilos.autor}>{autor}</td>
+      <td className={estilos.fecha}>{fecha.toDateString()}</td>
+      <td className={estilos.comentarios}>{comentarios}</td>
+      <td className={estilos.etiquetas}>
         {etiquetas.length > 0 ? (
           etiquetas.map((etiqueta) => (
             <p key={`${id}_${etiqueta}`}>{`#${etiqueta}`}</p>
           ))
         ) : (
-          <p className={classes.ninguno}>ninguna</p>
+          <p className={estilos.ninguno}>ninguna</p>
         )}
       </td>
     </tr>

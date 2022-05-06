@@ -1,5 +1,5 @@
 import { Fragment, useContext, useEffect, useState } from "react";
-import classes from "./Main.module.css";
+import estilos from "./Main.module.css";
 import UsuarioForm from "./UsuarioForm";
 import Repository from "./Repository";
 import UserContext from "../../store/user-context";
@@ -32,31 +32,34 @@ export const parseLink = (link: string | null) => {
 //COMPONENTE
 const Main = () => {
   const { idUsuario, setUsuario, reposCurrentPag } = useContext(UserContext);
-
   const [isLoading, setIsLoading] = useState(false);
-  const [httpError, setHttpError] = useState<string>();
+  const [error, setError] = useState<string>();
   const [logged, setLogged] = useState(false);
 
   const cargarUsuario = (usuario: string) => {
-    setLogged(true);
-    cargarRepos(`https://api.github.com/users/${usuario}/repos`);
+    if (usuario) {
+      setLogged(true);
+      cargarRepos(`https://api.github.com/users/${usuario}/repos`);
+    } else {
+      setError("Introduzca un usuario válido, por favor.");
+    }
   };
 
-  const cambiarPagina = (pagina: number) => {
+  const cambiarPagina = () => {
     cargarRepos(
       `https://api.github.com/user/${idUsuario}/repos?page=${reposCurrentPag}`
     ).catch((error) => {
       setIsLoading(false);
-      setHttpError(error.message);
+      setError(error.message);
     });
   };
 
   useEffect(() => {
-    logged && cambiarPagina(reposCurrentPag);
+    logged && cambiarPagina();
   }, [reposCurrentPag]);
 
   const cargarRepos = async (url: string) => {
-    setHttpError(undefined);
+    setError(undefined);
     setIsLoading(true);
 
     let idUser = 0;
@@ -65,11 +68,10 @@ const Main = () => {
     let reposTotalPags = 0;
 
     const response = await fetch(url);
-    console.log(url)
 
     if (!response.ok) {
       setIsLoading(false);
-      setHttpError(
+      setError(
         `${
           response.status === 404
             ? "El usuario indicado no existe."
@@ -99,24 +101,24 @@ const Main = () => {
 
   if (isLoading) {
     mainPanel = (
-      <section className={classes.loading}>
+      <section className={estilos.loading}>
         <p>Cargando datos...</p>
       </section>
     );
-  } else if (httpError) {
+  } else if (error) {
     mainPanel = (
-      <section className={classes.error}>
-        <p>{httpError}</p>
+      <section className={estilos.error}>
+        <p>{error}</p>
       </section>
     );
-  } else {
+  } else if (idUsuario) {
     mainPanel = <Repository onCambiarPagina={cambiarPagina} />;
   }
 
   return (
     <Fragment>
-      <UsuarioForm onCargarHandler={cargarUsuario} />
-      {logged && mainPanel}
+      {!idUsuario && <UsuarioForm onCargarHandler={cargarUsuario} />}
+      {mainPanel}
     </Fragment>
   );
 };

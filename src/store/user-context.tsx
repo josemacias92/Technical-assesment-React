@@ -25,6 +25,7 @@ const UserContext = React.createContext<UserData>({
   setSelectedIssueId: (indice: number) => {},
   setIssuesPage: (pagina: number) => {},
   setTotalIssuesPages: (totalPags: number) => {},
+  logout: () => {},
 });
 
 export default UserContext;

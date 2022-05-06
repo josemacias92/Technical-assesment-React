@@ -1,16 +1,26 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from "react";
+import UserContext from "../../store/user-context";
+import estilos from "./Header.module.css";
 
-import HeaderCartButton from './HeaderCartButton';
-import HandIcon from './HandIcon'
-import classes from './Header.module.css';
+const Header = () => {
+  const { nombreUsuario, logout } = useContext(UserContext);
 
-const Header = (props) => {
+  const onLogout = () => {
+    logout();
+  };
+
   return (
     <Fragment>
-      <header className={classes.header}>
+      <header className={estilos.header}>
         <h1>Gitmefy</h1>
-        <HandIcon />
-        <HeaderCartButton onClick={props.onShowCart} />
+        {nombreUsuario && (
+          <div>
+            <span className={estilos.bienvenida}>{`Bienvenido ${nombreUsuario}`}</span>
+            <button className={estilos.button} onClick={onLogout}>
+              Cambiar de usuario
+            </button>
+          </div>
+        )}
       </header>
     </Fragment>
   );

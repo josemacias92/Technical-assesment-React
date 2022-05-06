@@ -10,6 +10,7 @@
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+  animation: panel-appear 1s ease-out forwards;
 }
 
 .form h2 {
@@ -43,4 +44,16 @@
 .form button:active {
   background-color: #ebc002;
   border-color: #ebc002;
+}
+
+@keyframes panel-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

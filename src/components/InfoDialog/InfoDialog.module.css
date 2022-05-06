@@ -3,14 +3,25 @@
   gap: 0.5rem;
   color: #363636;
   align-items: center;
+  justify-content: center;
+  border-radius: 10px 10px 0px 0px;
+  background-color:  #ff5c4d;
+  color: aliceblue;
+}
+
+.encabezado h2 {
   text-align: center;
+}
+
+h3 {
+  margin-left: 1rem;
 }
 
 .lista {
   list-style: none;
   margin: 0;
-  padding: 0;
-  max-height: 20rem;
+  padding: 1rem;
+  max-height: 25rem;
   overflow: auto;
 }
 
@@ -25,7 +36,7 @@
   border: 1px solid #ebb002;
   color: #201d0f;
   padding: 0.5rem 1.5rem;
-  margin: 0.4rem;
+  margin: 1rem;
   margin-top: 2rem;
   border-radius: 4px;
   cursor: pointer;

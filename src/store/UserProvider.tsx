@@ -23,10 +23,11 @@ const acciones = {
   SET_ISSUES: "SET_ISSUES",
   SET_ISSUES_PAGE: "SET_ISSUES_PAGE",
   SET_TOTAL_ISSUES_PAGES: "SET_TOTAL_ISSUES_PAGES",
+  LOGOUT: "LOGOUT",
 };
 
 const repoReducer = (state: any, action: any) => {
-    switch (action.type) {
+  switch (action.type) {
     case acciones.SET_USER:
       return {
         ...state,
@@ -65,6 +66,8 @@ const repoReducer = (state: any, action: any) => {
         ...state,
         issuesTotalPags: action.totalPags,
       };
+    case acciones.LOGOUT:
+      return defaultRepoState;
     default:
       return { ...state };
   }
@@ -115,6 +118,10 @@ const UserProvider: React.FC<{ children: any }> = ({ children }) => {
     dispatchRepoAction({ type: acciones.SET_TOTAL_ISSUES_PAGES, totalPags });
   };
 
+  const logout = () => {
+    dispatchRepoAction({ type: acciones.LOGOUT });
+  };
+
   const repoContext = {
     idUsuario: repoState.idUsuario,
     nombreUsuario: repoState.nombreUsuario,
@@ -133,6 +140,7 @@ const UserProvider: React.FC<{ children: any }> = ({ children }) => {
     setSelectedIssueId,
     setIssuesPage,
     setTotalIssuesPages,
+    logout,
   };
 
   return (

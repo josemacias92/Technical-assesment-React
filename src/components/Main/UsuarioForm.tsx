@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import classes from "./UsuarioForm.module.css";
+import estilos from "./UsuarioForm.module.css";
 
 const UsuarioForm: React.FC<{
   onCargarHandler: (usuario: string) => void
@@ -9,15 +9,14 @@ const UsuarioForm: React.FC<{
 
   const onCargar = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(usuarioRef.current.value)
     onCargarHandler(usuarioRef.current.value);
   }
 
   return (
-    <form className={classes.form} onSubmit={onCargar}>
+    <form className={estilos.form} onSubmit={onCargar}>
       <h2>Introduzca el usuario de GitHub</h2>
       <input type="text" ref={usuarioRef}/>
-      <button className={classes.button} type="submit">
+      <button className={estilos.button} type="submit">
         Cargar Datos
       </button>
     </form>

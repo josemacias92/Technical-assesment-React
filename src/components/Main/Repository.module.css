@@ -1,33 +1,20 @@
 .panel {
-  max-width: 80rem;
+  max-width: 75rem;
   height: 20rem;
   width: 90%;
   margin: 2rem auto;
+  margin-top: 7rem;
   animation: panel-appear 1s ease-out forwards;
-}
-
-.lista {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 20rem;
-  overflow: auto;
-}
-
-
-table  {
-  max-width: 80rem;
-  overflow: scroll;
-  border-collapse: collapse;
 }
 
 .repo_nav{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
-  padding: auto; 
+  margin-bottom: 10px;
+  padding-left: 0.25rem;
+  border-radius: 10px 10px 0px 0px;
+  background-color:  #ff5c4d9b;
 }
 
 .nav{
@@ -42,19 +29,33 @@ table  {
   height: 2.6rem;
   font: inherit;
   padding: 0.5rem;
-  margin-right: 1rem;
+  margin-left: 0.5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
   border-radius: 4px;
 }
 
 .pag {
   color: #FFCD58;
-  margin: 5px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
 .selected_pag {
   color: #FF5C4D;
-  margin: 5px;
+  margin-right: 10px;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 28rem;
+  overflow: auto;
+}
+
+table  {
+  border-collapse: collapse;
 }
 
 th {
@@ -64,26 +65,20 @@ th {
 .loading {
   text-align: center;
   color: #FFCD58;
-  padding: 5rem;
+  height: 28rem;
 }
 
 .error {
   text-align: center;
   color: red;
-  padding: 5rem;
+  height: 28rem;
 }
 
 .ninguno {
   color: #FF5C4D;
   font-style: italic;
   text-align: center;
-  padding: 5rem;
-}
-
-.panel ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  height: 28rem;
 }
 
 @keyframes panel-appear {

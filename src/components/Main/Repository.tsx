@@ -53,7 +53,7 @@ const Repository: React.FC<{
   onCambiarPagina: (pagina: number) => void;
 }> = ({ onCambiarPagina }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  const [error, setError] = useState();
   const [showDialog, setShowDialog] = useState(false);
   const [paginasAMostrar, setPaginasAMostrar] = useState(
     window.screen.width > 497 ? 30 : 10
@@ -106,14 +106,14 @@ const Repository: React.FC<{
   useEffect(() => {
     cargarIssues(selectedRepoIndex).catch((error) => {
       setIsLoading(false);
-      setHttpError(error.message);
+      setError(error.message);
     });
   }, [selectedRepoIndex, issuesCurrentPag]);
 
   const cargarIssues = async (index: number) => {
 
     setIsLoading(true);
-    setHttpError(undefined);
+    setError(undefined);
 
     const url =
       issuesTotalPags === 0
@@ -259,10 +259,10 @@ const Repository: React.FC<{
         <p>Cargando datos...</p>
       </section>
     );
-  } else if (httpError) {
+  } else if (error) {
     mainPanel = (
       <section className={estilos.error}>
-        <p>{httpError}</p>
+        <p>{error}</p>
       </section>
     );
   } else {
@@ -292,7 +292,6 @@ const Repository: React.FC<{
     <section className={estilos.panel}>
       <Card>
         <div className={estilos.repo_nav}>
-          <span>Repositorios</span>
           <select
             name="repos"
             className={estilos.selector}
@@ -305,7 +304,6 @@ const Repository: React.FC<{
         {mainPanel}
         {crearPaginas(tiposListas.issues)}
       </Card>
-      {/* datos={issues.filter(i => i.id === selectedIssueId)[0]} */}
       {showDialog && <InfoDialog onClose={closeDialog}></InfoDialog>}
     </section>
   );

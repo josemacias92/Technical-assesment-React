@@ -5,22 +5,11 @@ import Dialogo from "../UI/Dialogo";
 import Comment from "./Comment";
 import estilos from "./InfoDialog.module.css";
 
-const parseDescripcion = (body: string): string => {
-  let subs = body.substring(
-    body.indexOf("Description\n\n") + "Description\n\n".length
-  );
-
-  return subs.substring(0, subs.indexOf("\r\\"));
-};
-
 const InfoDialog: React.FC<{
   onClose: (evento: React.MouseEvent<HTMLButtonElement>) => void;
-}> = ({
-  // datos: { id, tipo, titulo, body, autor, fecha, comentarios, etiquetas },
-  onClose,
-}) => {
+}> = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState<string>();
+  const [error, setError] = useState<string>();
   const [comentarios, setComentarios] = useState<CommentData[]>([]);
 
   const { nombreUsuario, repos, selectedRepoIndex, issues, selectedIssueId } = {
@@ -31,10 +20,8 @@ const InfoDialog: React.FC<{
     (i) => i.id === selectedIssueId
   )[0];
 
-  // const descripcion = parseDescripcion(body);
-
   const cargarComentarios = async () => {
-    setHttpError(undefined);
+    setError(undefined);
     setIsLoading(true);
 
     const comments: CommentData[] = [];
@@ -44,7 +31,7 @@ const InfoDialog: React.FC<{
 
     if (!response.ok) {
       setIsLoading(false);
-      setHttpError("No se ha podido recuperar los comentarios.");
+      setError("No se ha podido recuperar los comentarios.");
       return;
     }
 
@@ -76,17 +63,17 @@ const InfoDialog: React.FC<{
         <p>Cargando comentarios...</p>
       </section>
     );
-  } else if (httpError) {
+  } else if (error) {
     commentsPanel = (
       <section className={estilos.error}>
-        <p>{httpError}</p>
+        <p>{error}</p>
       </section>
     );
   } else {
     if (comentarios.length > 0) {
       commentsPanel = (
         <>
-          <h4>Comentarios</h4>
+          <h3>Comentarios</h3>
           <ul className={estilos.lista}>
             {comentarios.map((comentario) => (
               <Comment key={comentario.id} datos={comentario}></Comment>
@@ -108,12 +95,11 @@ const InfoDialog: React.FC<{
       <div className={estilos.encabezado}>
         <h2>{`${tipo} #${id}: ${titulo}`}</h2>
       </div>
-      {/* <p>{descripcion}</p> */}
       {commentsPanel}
       <div className={estilos.acciones}>
-      <button className={estilos.button} onClick={onClose}>
-        Cerrar
-      </button>
+        <button className={estilos.button} onClick={onClose}>
+          Cerrar
+        </button>
       </div>
     </Dialogo>
   );
